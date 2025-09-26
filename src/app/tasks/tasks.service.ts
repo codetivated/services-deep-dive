@@ -5,7 +5,10 @@ import { Task } from './task.model';
   providedIn: 'root',
 })
 export class TasksService {
-  tasks = signal<Task[]>([]);
+  // here we have tasks which cannot be modified from outside the service
+  private tasks = signal<Task[]>([]);
+  // here we expose a read-only version of the tasks signal
+  allTasks = this.tasks.asReadonly();
 
   constructor() {}
 
